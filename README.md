@@ -1,22 +1,17 @@
 # Setup
 Configs to setup my workstation.
 
-## Programs
-- Visual Studio Code
-- Python
-- PIP
-- Git Kraken
-- Spotify 
-- Notepad++
-- Node
-- NPM
-- Google chrome
-- Htop
-- Ncdu
-- Terminator
-- ZSH
-- Docker
-- Telegram
-- PostMan
-- Curl
-- Wget
+## System packages
+Collection of linux systems packages for:
+* Daily use
+* System management
+* Programming
+
+## Bash commands
+Bash commands for actions related with:
+* Docker
+* Python
+* Memory
+
+## Oh-My-Zsh configs
+Custom configurations for Oh-My-Zsh
