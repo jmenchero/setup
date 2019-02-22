@@ -20,6 +20,7 @@ system-utilities = (
     ncdu
     terminator
     zsh
+    i3
 )
 
 programming-utilities = (
