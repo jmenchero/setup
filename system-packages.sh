@@ -8,6 +8,8 @@ requirements = (
     software-properties-common
     apt-transport-https
     git
+    scrot
+    imagemagick
 )
 
 everyday-use = (
@@ -21,6 +23,8 @@ system-utilities = (
     terminator
     zsh
     i3
+    i3lock
+    xautolock
 )
 
 programming-utilities = (
