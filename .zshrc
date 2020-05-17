@@ -8,39 +8,81 @@ prompt_context () {}
 source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Custom aliases
-## Virualenvs
-nvenv () {
-    virtualenv /ETS/venvs/${PWD##*/} --python=/usr/bin/python3.6
-    source /ETS/venvs/${PWD##*/}/bin/activate
-    pip3 install -r requirements.txt
-}
-
-## SWAP
-rswap () {
+## System
+swap-reset () {
     sudo swapoff -a
     sudo swapon -a
 }
 
-## ETS Public
+## Git
+git-commit () {
+    git add .
+    git commit -m $1
+    git push
+}
+
+git-branch () {
+    git branch $1
+    git checkout $1
+    git push --set-upstream origin $1
+}
+
+## Python
+python-profile () {
+    mprof run python -m memory_profiler $
+    mprof plot
+}
+
+venv-new () {
+    virtualenv ~/venvs/${PWD##*/} --python=/usr/bin/python3.6
+    source ~/venvs/${PWD##*/}/bin/activate
+    pip3 install -r requirements.txt
+}
+
+## Docker
+docker-clean () {
+    docker rm -f $(docker ps -aq)
+}
+
+docker-portainer () {
+    sudo docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+}
+
+docker-rabbitmq () {
+    sudo docker run -d --hostname my-rabbit --name some-rabbit -p 4369:4369 -p 5671:5671 -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+}
+
+docker-redis () {
+    sudo docker run -d --hostname my-redis --name some-redis -p 6379:6379 redis
+}
+
+docker-kafka () {
+    sudo docker run -d --hostname my-kafka --name some-kafka -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=`docker-machine ip \`docker-machine active\`` --env ADVERTISED_PORT=9092 spotify/k$
+}
+
+docker-postgis () {
+    sudo docker run -d --hostname my-postgis --name some-postgis -p 5433:5432 -t -v pg_data:/var/lib/postgresql kartoza/postgis
+}
+
+# ETS
 mpublic () {
     sudo mount.cifs "//ets.es/public" /mnt/public/ -o user="$1",dom=ETS
 }
 
-## Docker
-rportainer () {
-    sudo docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+# Geoblink
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NPM_TOKEN="XXXXXXXXXXX"
+export WORKSPACE="/home/jmenchero/git/geoblink-app"
+
+vpn-connect () {
+    sudo pkill -f openvpn
+    echo "nameserver 1.1.1.1" | sudo tee -a /etc/resolv.conf
+    sudo openvpn /home/jmenchero/Descargas/jmenchero@vpn.geoblink.com.ovpn
 }
 
-rrabbitmq () {
-    sudo docker run -d --hostname my-rabbit --name some-rabbit -p 4369:4369 -p 5671:5671 -p 5672:5672 -p 15672:15672 rabbitmq:3-management
-}
-
-rredis () {
-    sudo docker run -d --hostname my-redis --name some-redis -p 6379:6379 redis
-}
-
-## Python
-ppython () {
-    mprof run python -m memory_profiler $
-    mprof plot
+app-run () {
+    sudo service nginx restart
+    cd /home/jmenchero/git/geoblink-app && ./bin/open-tunnels-local.sh && yarn debug:local
 }
