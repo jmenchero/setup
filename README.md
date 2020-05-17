@@ -1,6 +1,11 @@
 # Setup
 Configs to setup my workstation.
 
+## How-to
+```
+sudo ansible-pull -U https://github.com/jmenchero/setup.git
+```
+
 ## System packages
 Collection of linux systems packages for:
 * Daily use
