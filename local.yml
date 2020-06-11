@@ -1,19 +1,23 @@
 - hosts: localhost
   become: true
   tasks:
+  - name: Install role dependencies
+    local_action: command ansible-galaxy install -r requirements.yml
   - name: Install system utilities
     apt:
       name: ['curl','wget','htop','ncdu']
   - name: Install terminal and windows managers
     apt:
       name: ['terminator','zsh','i3','i3lock']
+  # - name: Install Oh My Zsh with plug-ins
+  #   shell: |
+  #     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  #     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  #     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+
 # TODO: xautolock
 # TODO:
-# - name: Install Oh My Zsh with plug-ins
-#   shell: |
-#     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-#     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-#     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 # - name: Install VSCode
 #   shell: |
 #     wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
