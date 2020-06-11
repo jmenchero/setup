@@ -42,14 +42,17 @@
       - slack
       - spotify
       - chromium
-
-  - name: Install Language packages
-    package:
-      name: ['python3','python3-dev','python3-pip','npm','virtualenv']
-      state: present
   - name: Install Python packages
+    package:
+      name: ['python3','python3-dev','python3-pip','python','python-dev','python-pip','virtualenv']
+      state: present
+  - name: Install Python modules
     pip:
       name: ['psutil','memory-profiler']
+      state: present
+  - name: Install Node packages
+    package:
+      name: ['npm']
       state: present
   # - name: Install Node modules
   #   npm:
@@ -79,10 +82,12 @@
       src: assets/wallpaper.jpg
       dest: /home/.wallpaper.jpg
   - name: Set GNOME wallpaper
+    become_user: jmenchero
     dconf:
-      key: /org/gnome/desktop/background/picture-uri
-      value: file:///home/.wallpaper.jpg
+      key: "/org/gnome/desktop/background/picture-uri"
+      value: "'file:///home/.wallpaper.jpg'"
   - name: Set GNOME lockscreen
+    become_user: jmenchero
     dconf:
-      key: /org/gnome/desktop/screensaver/picture-uri
-      value: file:///home/.wallpaper.jpg
+      key: "/org/gnome/desktop/screensaver/picture-uri"
+      value: "'file:///home/.wallpaper.jpg'"
