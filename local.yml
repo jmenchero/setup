@@ -42,10 +42,6 @@
       - slack
       - spotify
       - chromium
-  - name: Install infrastructure development
-    include_role:
-      name: nickjj.docker
-    # TODO: Add Kubernetes
 
   - name: Install Language packages
     package:
@@ -61,6 +57,10 @@
       name: ['memory_profiler']
       global: yes
       state: present
+  - name: Install Docker
+    include_role:
+      name: nickjj.docker
+    # TODO: Add Kubernetes
   - name: Add fonts
     include_role:
       name: ontic.fonts
