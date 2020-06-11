@@ -8,7 +8,7 @@
       - wget
       - htop
       - ncdu
-      - git
+      # - git
       - shutter
   - name: Install terminal and windows managers
     apt: name={{item}}
