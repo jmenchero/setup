@@ -4,16 +4,28 @@
   - name: Install role dependencies
     local_action: command ansible-galaxy install -r requirements.yml
   - name: Install system utilities
-    apt:
+    package:
       name: ['curl','wget','htop','ncdu']
+      state: present
   - name: Install terminal and windows managers
-    apt:
+    package:
       name: ['terminator','zsh','i3','i3lock']
-  # - name: Install Oh My Zsh with plug-ins
-  #   shell: |
-  #     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-  #     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-  #     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+      state: present
+  roles:
+    - role: gantsign.antigen
+      users:
+        - username: jmenchero
+          antigen_libraries:
+            - name: oh-my-zsh
+          antigen_theme:
+            name: agnoster
+          antigen_bundles:
+            - name: git
+            - name: pip
+            - name: zsh-syntax-highlighting
+              url: zsh-users/zsh-syntax-highlighting
+            - name: zsh-autosuggestions
+              url: zsh-users/zsh-autosuggestions
 
 
 # TODO: xautolock
