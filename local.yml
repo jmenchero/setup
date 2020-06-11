@@ -50,7 +50,6 @@
   - name: Install Python packages
     pip:
       name: ['psutil','memory-profiler']
-      global: yes
       state: present
   # - name: Install Node modules
   #   npm:
