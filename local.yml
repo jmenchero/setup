@@ -61,20 +61,20 @@
   #   include_role:
   #     name: nickjj.docker
   #   # TODO: Add Kubernetes
-  - name: Add fonts
-    include_role:
-      name: ontic.fonts
-    vars:
-      fonts_shared:
-        - type: 'truetype'
-          src: 'fonts/{{item}}.ttf'
-          dest: 'mplus/{{item}}.ttf'
-          with_items:
-            - mplus-1m-thin
-            - mplus-1m-light
-            - mplus-1m-regular
-            - mplus-1m-medium
-            - mplus-1m-bold
+  # - name: Add fonts
+  #   include_role:
+  #     name: ontic.fonts
+  #   vars:
+  #     fonts_shared:
+  #       - type: 'truetype'
+  #         src: 'fonts/{{item}}.ttf'
+  #         dest: 'mplus/{{item}}.ttf'
+  #         with_items:
+  #           - mplus-1m-thin
+  #           - mplus-1m-light
+  #           - mplus-1m-regular
+  #           - mplus-1m-medium
+  #           - mplus-1m-bold
   - name: Copy wallpaper
     copy:
       src: assets/wallpaper.jpg
