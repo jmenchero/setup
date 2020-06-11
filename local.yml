@@ -36,7 +36,7 @@
       name: gantsign.visual-studio-code
     # TODO: VSCode config and extensions
   - name: Install Daily Use
-    command: snap install {{item}}
+    command: snap install {{item}} --classic
     with_items:
       - telegram-desktop
       - slack
