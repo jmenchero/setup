@@ -2,9 +2,11 @@
   become: true
   tasks:
   - name: Install system utilities
-    apt: name:['curl', 'wget', 'htop', 'ncdu', 'shutter']
+    apt:
+      name: ['curl','wget','htop','ncdu','shutter']
   - name: Install terminal and windows managers
-    apt: name:['terminator', 'zsh', 'i3', 'i3lock']
+    apt:
+      name: ['terminator','zsh','i3','i3lock']
 # TODO: xautolock
 # TODO:
 # - name: Install Oh My Zsh with plug-ins

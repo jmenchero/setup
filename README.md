@@ -24,3 +24,9 @@ Bash commands for actions related with:
 
 ## Oh-My-Zsh configs
 Custom configurations for Oh-My-Zsh
+
+## Debugging tips
+Execute a dry-run installation in local to properly check some syntax and errors beforehand:
+```
+sudo ansible-playbook local.yml --check
+```
