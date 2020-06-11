@@ -1,6 +1,10 @@
 # Setup
 Configs to setup my workstation.
 
+## Requirements
+* ansible: To run the ansible playbook
+* git: To pull it from current repository
+
 ## How-to
 ```
 sudo ansible-pull -U https://github.com/jmenchero/setup.git

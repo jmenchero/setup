@@ -2,22 +2,10 @@
   become: true
   tasks:
   - name: Install system utilities
-    apt: name={{item}}
-    with_items:
-      - curl
-      - wget
-      - htop
-      - ncdu
-      # - git
-      - shutter
+    apt: name=['curl', 'wget', 'htop', 'ncdu', 'shutter']
   - name: Install terminal and windows managers
-    apt: name={{item}}
-    with_items:
-      - terminator
-      - zsh
-      - i3
-      - i3lock
-      - xautolock
+    apt: name=['terminator', 'zsh', 'i3', 'i3lock']
+# TODO: xautolock
 # TODO:
 # - name: Install Oh My Zsh with plug-ins
 #   shell: |
