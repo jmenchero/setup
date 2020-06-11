@@ -12,6 +12,7 @@
       name: ['terminator','zsh','i3','i3lock']
       state: present
   roles:
+    - role: gantsign.visual-studio-code
     - role: gantsign.antigen
       users:
         - username: jmenchero
