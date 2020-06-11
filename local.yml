@@ -11,9 +11,13 @@
     package:
       name: ['terminator','zsh','i3','i3lock']
       state: present
-  roles:
-    - role: gantsign.visual-studio-code
-    - role: gantsign.antigen
+  - name: Install VSCode
+    include_role:
+      name: gantsign.visual-studio-code
+  - name: Install Oh My Zshell
+    include_role:
+      name: gantsign.antigen
+    vars:
       users:
         - username: jmenchero
           antigen_libraries:
